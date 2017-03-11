@@ -24,15 +24,28 @@ function authenticateViaCredentials(email, password, fingerprintingResults, res)
     let sql = `SELECT COUNT(*) AS 'status' FROM authentication WHERE email = "${email}" AND password = "${password}";`;
     db.query(sql, function (error, results, fields) {
         if (results[0].status) {
+            res.status = 200;
             res.send({
-                status: "success"
+                status: "success",
+                matched: {
+                    percentage: 100,
+                    hash: true,
+                    canvasHash: true,
+                    otherFields: []
+                }
             });
         } else {
             res.status = 400;
             res.send({
                 status: "Invalid credentials",
                 errors: [
-                    "Authentication failure"
+                    "Authentication failure",
+                    {
+                        input: {
+                            email: email,
+                            password: password
+                        }
+                    }
                 ]
             });
         }
