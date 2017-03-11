@@ -1,8 +1,17 @@
-/**
- * Created by gisi on 11.03.17.
- */
-console.log("hello world")
+console.log("hello world");
 
+getCanvasHash();
+
+function getCanvasHash() {
+    "use strict";
+
+    new Fingerprint2().get(function(result, components){
+
+        let allRe
+        console.log(result); //a hash, representing your device fingerprint
+        console.log(components); // an array of FP components
+    });
+}
 
 
 function main()
