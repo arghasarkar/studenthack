@@ -166,8 +166,6 @@ function formatOtherFields(live, db) {
 }
 
 app.post("/", function(req, res) {
-    //console.log("hello");
-    //console.log(req.body);
 
     let email = req.body.email;
     let password = req.body.password;

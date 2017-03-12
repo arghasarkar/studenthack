@@ -21,10 +21,9 @@ function getCanvasHash() {
 function main() {
     var e = returnEmail();
     var p = returnPass();
-    var url = "http://10.99.155.2:4000/";
+    var url = "http://localhost/";
     //console.log(url);
-
-
+    
 
     new Fingerprint2({excludeJsFonts: true}).get(function(result, components){
 
