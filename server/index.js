@@ -69,14 +69,38 @@ function matchHash(liveHash, dbHash) {
     let percentageMatch = 0;
     let hashMatch = false;
 
-    //liveHash = liveHash.trim();
-    //dbHash = dbHash.trim();
-    //liveHash = liveHash.replace("' ","");
 
-    hashMatch = (liveHash == dbHash);
+    console.log(liveHash);
 
-    console.log("live:",liveHash);
-    console.log(dbHash);
+
+    if (liveHash === undefined || liveHash == "") {
+        liveHash = "{}";
+    }
+
+    let liveHashDecoded;//= JSON.parse(liveHash);
+    let dbHashDecoded;// = JSON.parse(dbHash);
+
+
+
+    //try {
+        liveHashDecoded = JSON.parse(liveHash);
+        dbHashDecoded = JSON.parse(dbHash);
+    /*} catch(err) {
+
+    }*/
+
+    if (liveHashDecoded.hash && dbHashDecoded.hash) {
+        hashMatch = (liveHashDecoded.hash == dbHashDecoded.hash);
+    }
+
+    let liveResults;
+    let dbResults;
+
+    if (liveHashDecoded.results && dbHashDecoded.results) {
+        liveResults = liveHashDecoded.results;
+        dbResults = dbHashDecoded.results;
+    }
+
 
     /*liveHash = JSON.parse(liveHash);
     //dbHash = JSON.parse(dbHash);
