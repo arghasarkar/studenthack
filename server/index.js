@@ -90,7 +90,11 @@ function matchHash(liveHash, dbHash) {
     }*/
 
     if (liveHashDecoded.hash && dbHashDecoded.hash) {
-        hashMatch = (liveHashDecoded.hash == dbHashDecoded.hash);
+        if (liveHashDecoded.hash == dbHashDecoded.hash) {
+            hashMatch = true;
+
+            percentageMatch += 75;
+        }
     }
 
     let liveResults;
