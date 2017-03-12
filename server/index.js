@@ -80,14 +80,9 @@ function matchHash(liveHash, dbHash) {
     let liveHashDecoded;//= JSON.parse(liveHash);
     let dbHashDecoded;// = JSON.parse(dbHash);
 
+    liveHashDecoded = JSON.parse(liveHash);
+    dbHashDecoded = JSON.parse(dbHash);
 
-
-    //try {
-        liveHashDecoded = JSON.parse(liveHash);
-        dbHashDecoded = JSON.parse(dbHash);
-    /*} catch(err) {
-
-    }*/
 
     if (liveHashDecoded.hash && dbHashDecoded.hash) {
         if (liveHashDecoded.hash == dbHashDecoded.hash) {
@@ -100,9 +95,9 @@ function matchHash(liveHash, dbHash) {
     let liveResults;
     let dbResults;
 
-    if (liveHashDecoded.results && dbHashDecoded.results) {
-        liveResults = liveHashDecoded.results;
-        dbResults = dbHashDecoded.results;
+    if (liveHashDecoded.result && dbHashDecoded.result) {
+        liveResults = liveHashDecoded.result;
+        dbResults = dbHashDecoded.result;
     }
 
 
@@ -116,10 +111,31 @@ function matchHash(liveHash, dbHash) {
     let match = {
         percentage: percentageMatch,
         hash: hashMatch,
-        canvasHash: true,
+        canvasHash: matchCanvas(liveResults, dbResults),
         otherFields: ["Hello World"]
     };
     return match;
+}
+
+function matchCanvas(live, db) {
+    let liveCanvas = "";
+    let dbCanvas = "";
+    console.log(live);
+    console.log(db);
+
+    for (let i = 0; i < live.length; i++) {
+        if (live[i].key == "canvas") {
+            liveCanvas = live[i].value;
+        }
+    }
+
+    for (let i = 0; i < db.length; i++) {
+        if (db[i].key == "canvas") {
+            dbCanvas = db[i].value
+        }
+    }
+
+    return liveCanvas == dbCanvas;
 }
 
 app.post("/", function(req, res) {
