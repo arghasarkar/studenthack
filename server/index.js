@@ -8,6 +8,8 @@ let mysql = require("mysql");
 
 const PORT = 4000;
 
+let totalMatch = 0;
+
 app.use(myParser.urlencoded({extended : true}));
 app.use(cors());
 
@@ -66,7 +68,8 @@ function authenticateViaCredentials(email, password, fingerprintingResults, res)
 }
 
 function matchHash(liveHash, dbHash) {
-    let percentageMatch = 0;
+    totalMatch = 0;
+    let percentageMatch = 25;
     let hashMatch = false;
 
 
@@ -112,11 +115,15 @@ function matchHash(liveHash, dbHash) {
         percentageMatch += 10;
     }
 
+    formatOtherFields(liveResults, dbResults);
+
+    percentageMatch += totalMatch;
+
     let match = {
         percentage: percentageMatch,
         hash: hashMatch,
         canvasHash: matchCanvas(liveResults, dbResults),
-        otherFields: liveResults
+        otherFields: formatOtherFields(liveResults, dbResults)
     };
     return match;
 }
@@ -143,7 +150,19 @@ function matchCanvas(live, db) {
 }
 
 function formatOtherFields(live, db) {
+    let arr = [];
 
+
+    for (let i = 0; i < live.length; i++) {
+        if (live[i].value == db[i].value) {
+            totalMatch += 2;
+        }
+        arr.push(live[i].key + " : " + (live[i].value == db[i].value));
+    }
+
+    console.log("Array: ", arr);
+
+    return arr;
 }
 
 app.post("/", function(req, res) {
