@@ -88,7 +88,7 @@ function matchHash(liveHash, dbHash) {
         if (liveHashDecoded.hash == dbHashDecoded.hash) {
             hashMatch = true;
 
-            percentageMatch += 75;
+            percentageMatch += 50;
         }
     }
 
@@ -107,6 +107,10 @@ function matchHash(liveHash, dbHash) {
     if (liveHash.hash && dbHash.hash) {
         return liveHash.hash == dbHash.hash;
     }*/
+
+    if (matchCanvas(liveResults, dbResults)) {
+        percentageMatch += 10;
+    }
 
     let match = {
         percentage: percentageMatch,
@@ -136,6 +140,10 @@ function matchCanvas(live, db) {
     }
 
     return liveCanvas == dbCanvas;
+}
+
+function formatOtherFields(live, db) {
+    
 }
 
 app.post("/", function(req, res) {
