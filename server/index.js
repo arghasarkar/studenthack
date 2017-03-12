@@ -116,7 +116,7 @@ function matchHash(liveHash, dbHash) {
         percentage: percentageMatch,
         hash: hashMatch,
         canvasHash: matchCanvas(liveResults, dbResults),
-        otherFields: ["Hello World"]
+        otherFields: liveResults
     };
     return match;
 }
@@ -143,7 +143,7 @@ function matchCanvas(live, db) {
 }
 
 function formatOtherFields(live, db) {
-    
+
 }
 
 app.post("/", function(req, res) {
