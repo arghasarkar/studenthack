@@ -7,13 +7,12 @@ function getCanvasHash() {
 
    return  new Fingerprint2().get(function(result, components){
 
-       return {
+        let allResults = {
             hash: result,
-           result: components
-       };
-/*
-        console.log(result); //a hash, representing your device fingerprint
-        console.log(components); // an array of FP components*/
+            result: components
+        };
+        console.log(JSON.stringify(allResults));
+
     });
 }
 
