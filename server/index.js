@@ -33,7 +33,6 @@ function authenticateViaCredentials(email, password, fingerprintingResults, res)
 
             db.query(sqlFP, function (_error, _results, _fields) {
                 if (_results[0]) {
-                    //console.log(_results[0].fingerprint);
 
                     res.send({
                         status: "success",
