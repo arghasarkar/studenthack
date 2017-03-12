@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>login</title>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="index.css">
 
     <script src="fingerprint2.js"></script>
 
@@ -13,13 +15,16 @@
             crossorigin="anonymous"></script>
     <script src ="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></script>
+
     <script src = "index.js"></script>
 
 </head>
+
 <body>
 
 <div class="container">
-    <h2>Login form</h2>
+    <h2>Login Form</h2>
 
     <div class="form-group">
         <label for="email">Email:</label>
@@ -36,7 +41,36 @@
 </div>
 
 
-<canvas id="canvas" height="150" width="150"></canvas>
+<canvas id="canvas" height="100" width="100"></canvas>
+
+<div id ="percentage">
+
+    <div class="content">
+
+     <div class="percent">
+         <label>Matched percentage: </label>
+
+         <label id="percentageValue"></label>
+     </div>
+
+    <div class="percent">
+        <label>Canvas hash: </label>
+
+        <label id="canvasHash"></label>
+    </div>
+
+        <div class="otherfields">
+            <label>Other Fields: </label>
+
+            <label id="otherFields"></label>
+        </div>
+
+</div>
+</div>
+
+</div>
+
+
 
 </body>
 </html>
